@@ -13,18 +13,18 @@ export const Content = styled.div`
 	align-items: center;
 
 	button {
-		font-size: 1rem;
+		font-size: 0.7rem;
 		background-color: var(--blue-light);
 		color: var(--shape);
 		padding: 0rem 2rem;
-		height: 3rem;
+		height: 2.5rem;
 		border: 0;
-		border-radius: 0.5rem;
+		border-radius: 0.25rem;
 
 		transition: opacity 0.2s;
 
 		&:hover {
-			opacity: 0.9;
+			opacity: 0.8;
 		}
 	}
 `;

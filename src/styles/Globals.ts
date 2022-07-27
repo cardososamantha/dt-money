@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         --red: #E62E4D;
 
         --title: #363F5F;
-        --text:  #969CB3;
+        --text:  #969CB2;
     }
 
     * {
@@ -34,6 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background-color: var(--background);
         -webkit-font-smoothing: antialiased;
+        font-family: 'Poppins', sans-serif;
     }
 
     border-style, input, textarea, button {

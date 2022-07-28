@@ -1,29 +1,18 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Container } from './styles';
+
+import { api } from '../../services/api';
 
 const tableTitles = ['Título', 'Preço', 'Categoria', 'Data'];
 
-const dataExamples = [
-	{
-		title: 'Amazon',
-		price: 23.5,
-		category: 'Compra Online',
-		data: 'hoje',
-	},
-	{
-		title: 'Ebay',
-		price: 105.5,
-		category: 'Compra Online',
-		data: 'hoje',
-	},
-	{
-		title: 'Freelancer',
-		price: 1000.5,
-		category: 'Compra Online',
-		data: 'hoje',
-	},
-];
-
 export function TransactionTable() {
+	const [transactions, setTransactions] = useState([]);
+
+	useEffect(() => {
+		api.get('/transactions').then((data) => console.log(data));
+	}, []);
+
 	return (
 		<Container>
 			<table>
@@ -33,14 +22,14 @@ export function TransactionTable() {
 					))}
 				</thead>
 				<tbody>
-					{dataExamples.map((item) => (
+					{/* {dataExamples.map((item) => (
 						<tr>
 							<td>{item.title}</td>
 							<td className='deposit'>{item.price}</td>
 							<td>{item.category}</td>
-							<td>{item.data}</td>
+							<td>{item.date}</td>
 						</tr>
-					))}
+					))} */}
 				</tbody>
 			</table>
 		</Container>

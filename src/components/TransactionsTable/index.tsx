@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container } from './styles';
 
@@ -7,10 +6,15 @@ import { api } from '../../services/api';
 const tableTitles = ['Título', 'Preço', 'Categoria', 'Data'];
 
 export function TransactionTable() {
-	const [transactions, setTransactions] = useState([]);
+	const [transactions, setTransactions] = useState({});
+
+	async function getTransactions() {
+		const response = await api.get('/transactions');
+		setTransactions(response.data);
+	}
 
 	useEffect(() => {
-		api.get('/transactions').then((data) => console.log(data));
+		getTransactions();
 	}, []);
 
 	return (
@@ -22,7 +26,7 @@ export function TransactionTable() {
 					))}
 				</thead>
 				<tbody>
-					{/* {dataExamples.map((item) => (
+					{/* {transactions.map((item) => (
 						<tr>
 							<td>{item.title}</td>
 							<td className='deposit'>{item.price}</td>

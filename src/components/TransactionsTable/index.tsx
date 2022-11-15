@@ -1,39 +1,36 @@
-import { useEffect, useState } from 'react';
-import { Container } from './styles';
+import { useTransactions } from '../../hooks/useTransactions';
 
-import { api } from '../../services/api';
+import { Container } from './styles';
 
 const tableTitles = ['Título', 'Preço', 'Categoria', 'Data'];
 
 export function TransactionTable() {
-	const [transactions, setTransactions] = useState({});
-
-	async function getTransactions() {
-		const response = await api.get('/transactions');
-		setTransactions(response.data);
-	}
-
-	useEffect(() => {
-		getTransactions();
-	}, []);
+	const { transactions } = useTransactions();
 
 	return (
 		<Container>
 			<table>
 				<thead>
 					{tableTitles.map((title) => (
-						<th>{title}</th>
+						<th key={title}>{title}</th>
 					))}
 				</thead>
 				<tbody>
-					{/* {transactions.map((item) => (
-						<tr>
-							<td>{item.title}</td>
-							<td className='deposit'>{item.price}</td>
-							<td>{item.category}</td>
-							<td>{item.date}</td>
+					{transactions.map((transaction) => (
+						<tr key={transaction.id}>
+							<td>{transaction.title}</td>
+							<td className={transaction.type}>
+								{transaction.amount.toLocaleString('pt-br', {
+									style: 'currency',
+									currency: 'BRL',
+								})}
+							</td>
+							<td>{transaction.category}</td>
+							<td>
+								{new Date(transaction.createdAt).toLocaleDateString('pt-br')}
+							</td>
 						</tr>
-					))} */}
+					))}
 				</tbody>
 			</table>
 		</Container>
